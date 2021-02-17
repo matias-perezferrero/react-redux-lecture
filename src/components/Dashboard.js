@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 class Dashboard extends Component {
 
     render(){
+        console.log(this.props)
+        // if (!this.props.user.email) {
+        //     return <Redirect to="/" />
+        // }
+
         return (
             <main className='dashboard'>
                 <h1>Your Pokemon</h1>
@@ -15,5 +22,12 @@ class Dashboard extends Component {
     }
 }
 
+function mapStateToProps(reduxState) {
+    return {
+        user: reduxState.user.user,
+        pokemon: reduxState.pokemon.pokemon
+    }
+}
 
-export default Dashboard;
+
+export default connect(mapStateToProps)(Dashboard);
